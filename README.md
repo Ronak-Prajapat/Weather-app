@@ -10,7 +10,7 @@ A simple weather application that allows users to check the current weather for 
 - 🔗 Social media links for easy connection.
 
 ## 📸 Screenshot
-![Weather App Preview](https://source.unsplash.com/800x400/?weather) 
+![Weather App Preview](https://github.com/Ronak-Prajapat/Weather-app/blob/main/Screenshot%20(35).png?raw=true) 
 
 ## 🛠️ Technologies Used
 - HTML5
