@@ -26,4 +26,4 @@ A simple weather application that allows users to check the current weather for 
 ## 📝 How to Run Locally?
 1. Clone this repository:
    ```sh
-   git clone https://github.com/your-username/weather-app.git
+   git clone https://github.com/Ronak-Prajapat/weather-app.git
