@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ff5722;
+            transform: scale(1.05);
+        }
+
+        button {
+            width: 80%;
+            padding: 14px 20px;
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.5);
+        }
+
+        .weather-info {
+            margin-top: 25px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .weather-info img {
+            width: 80px;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none; /* Remove any border */
+            outline: none; /* Remove the outline on focus */
+            background: transparent; /* Make sure no background color */
+        }
+
+        .footer a:hover {
+            transform: scale(1.1); /* Slight scaling effect */
+        }
+
+        .footer img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+            background: transparent; /* Ensure no background behind icons */
+        }
+
+        .loader {
+            display: none;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid white;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin-top: 10px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        /* For small screen sizes */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+            .footer a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="container">
+            <h2>Weather App</h2>
+            <input type="text" id="location" placeholder="Enter Location" onkeypress="handleKeyPress(event)">
+            <button onclick="getWeather()">Get Weather</button>
+            <div class="loader" id="loader"></div>
+            <div class="weather-info" id="weather"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://www.instagram.com/ronak.rdx" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Icon"> Instagram
+        </a>
+        <a href="https://github.com/Ronak-Prajapat" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub Icon"> GitHub
+        </a>
+        <a href="https://in.linkedin.com/in/ronak-prajapat-0563312b9" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon"> LinkedIn
+        </a>
+        <a href="https://www.facebook.com/ronak.rdx.9889" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Icon"> Facebook
+        </a>
+        <a href="https://www.youtube.com/@ronak_rdx" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon"> YouTube
+        </a>
+    </div>
+
+    <div class="name">
+        <p>Made by <strong>Ronak Prajapat</strong></p>
+    </div>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                getWeather();
+            }
+        }
+
+        async function getWeather() {
+            const location = document.getElementById('location').value;
+            if (!location) {
+                alert('Please enter a location');
+                return;
+            }
+            
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('weather').innerHTML = '';
+            
+            const apiKey = 'df12b69457a04652b05112219253101';
+            const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById('weather').innerHTML = `<p style='color:red;'>${data.error.message}</p>`;
+                    return;
+                }
+                
+                let weatherCondition = data.current.condition.text.toLowerCase();
+                let backgroundColor = weatherCondition.includes("sunny") ? '#87CEEB' : 
+                                     weatherCondition.includes("rain") ? '#4A90E2' : 
+                                     weatherCondition.includes("cloud") ? '#B0C4DE' : 
+                                     weatherCondition.includes("snow") ? '#FFFFFF' : 
+                                     weatherCondition.includes("hot") ? '#FF4500' : '#2E2E2E';
+                document.body.style.background = backgroundColor;
+                
+                document.getElementById('weather').innerHTML = `
+                    <h3>${data.location.name}, ${data.location.country}</h3>
+                    <p><strong>Temperature:</strong> ${data.current.temp_c}°C</p>
+                    <p><strong>Condition:</strong> ${data.current.condition.text}</p>
+                    <img src="${data.current.condition.icon}" alt="Weather Icon">
+                    <p><strong>Humidity:</strong> ${data.current.humidity}%</p>
+                    <p><strong>Wind Speed:</strong> ${data.current.wind_kph} kph</p>
+                `;
+            } catch (error) {
+                document.getElementById('weather').innerHTML = `<p style='color:red;'>Failed to fetch weather data</p>`;
+            } finally {
+                document.getElementById('loader').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
